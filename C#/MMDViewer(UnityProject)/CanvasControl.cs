@@ -29,9 +29,6 @@ public class CanvasControl : MonoBehaviour {
 
     
     public GameObject Canvas1;
-    //public GameObject Canvas2;
-    //public GameObject Canvas3;
-    //public GameObject Canvas4;
 
     public bool CanvasVisible = true;
     
@@ -74,13 +71,6 @@ public class CanvasControl : MonoBehaviour {
     {
         isValid = false;    //フレーム毎にリセット
 
-        //他のUI触ってたら反応しないようにする
-        /*
-        //PC版
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            return;
-        }*/
         //Android版
         if (Input.touchCount >= 1)
         {
@@ -104,8 +94,6 @@ public class CanvasControl : MonoBehaviour {
                     pressing = true;
                     requiredTime = Time.time + validTime;
 
-                    //
-                    //start_position = new Vector2(pos.x, pos.y);
                     end_position_min = new Vector2(pos.x - hanni, pos.y - hanni);
                     end_position_max = new Vector2(pos.x + hanni, pos.y + hanni);
                 }
@@ -121,13 +109,8 @@ public class CanvasControl : MonoBehaviour {
                         {
                             isValid = true;
                             
-                            //ここ自作
                             if((pos.x < end_position_max.x) && (pos.x > end_position_min.x) && (pos.y < end_position_max.y) && (pos.y > end_position_min.y))
                             {
-
-
-
-
 
                                 /*********************↓長押ししたときの処理↓*********************/
                                 if (CanvasVisible == true)
@@ -142,14 +125,9 @@ public class CanvasControl : MonoBehaviour {
                                 }
                                 /*********************↑長押ししたときの処理↑*********************/
 
-
-
-
                             }
 
-
                         }
-
                         pressing = false;   //長押し完了したら無効にする
                     }
                 }

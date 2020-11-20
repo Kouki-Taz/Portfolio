@@ -93,12 +93,6 @@ public class ObjectManager : MonoBehaviour {
 
     //オプション値
     private int FPS_value = 30;
-    //private float pixelsPerUnit = 100.0f;
-
-    //時間あるときにドロップダウンのコンテンツサイズ変更も
-
-
-    //currentMMD
 
 
 
@@ -242,7 +236,7 @@ public class ObjectManager : MonoBehaviour {
             Screen.orientation = ScreenOrientation.Portrait;
 
         //UIサイズ変更
-        AdjustScale();//ここCanvasのInspectorで解像度設定したからいらないかも？
+        AdjustScale();
 
         //デバッグ用
         PrintDebugMessage();
@@ -251,7 +245,7 @@ public class ObjectManager : MonoBehaviour {
     //解像度変更
     public void SetResolution()
     {
-        //Galaxy S7 edge は 1440x2560(?)
+        //Galaxy S7 edge は 1440x2560
         int width;
         int height;
         if (Screen.orientation == ScreenOrientation.Portrait)
@@ -289,10 +283,8 @@ public class ObjectManager : MonoBehaviour {
             height = (int)(default_width * screenRate);
         }
 
-        //実際の解像度変更処理は現在のフレーム終了時に行われるらしい
+        //実際の解像度変更処理は現在のフレーム終了時に行われる
         Screen.SetResolution(width, height, fullscreen, preferredRefreshRate);
-
-        //UIサイズ変更処理はCanvasのInspectorで解像度変更対応してるからいらない
 
         //デバッグ用
         PrintDebugMessage();
@@ -534,7 +526,7 @@ public class ObjectManager : MonoBehaviour {
         ObjectFind();
 
         //各MMDにモーション等追加
-        SetMMDOptions();//Awake()内でなければうまく動作しない(start内ではダメ)
+        SetMMDOptions();
     }
 
     void Start () {
@@ -546,22 +538,15 @@ public class ObjectManager : MonoBehaviour {
         //オプション設定
         SetOptions();
 
-        //オブジェクト紐づけ
-        //ObjectFind();
-
         //ドロップダウン設定
         SetDropdown();
 
         //UIサイズ変更
         AdjustScale();
 
-        //各MMDにモーション等追加
-        //SetMMDOptions();
-
         //その他開始時の処理
         StopButton.SetActive(false);
         InformationPanel.SetActive(false);
-
 
         //デバッグ用
         PrintDebugMessage();
@@ -585,19 +570,6 @@ public class ObjectManager : MonoBehaviour {
             //画面をタッチしている判定
             if (Input.touchCount >= 1 || Input.GetMouseButton(0))
             {
-                //IP以外の場所をタッチしている判定
-                /*
-                EventSystem eventSystem = EventSystem.current;
-                if (!eventSystem.IsPointerOverGameObject(Input.touchCount))
-                {
-                    InformationPanel.SetActive(false);
-                }
-
-                if (!eventSystem.IsPointerOverGameObject())
-                {
-                    InformationPanel.SetActive(false);
-                }
-                */
                 PointerEventData pointer = new PointerEventData(EventSystem.current);
                 List<RaycastResult> results = new List<RaycastResult>();
                 // マウスポインタの位置にレイ飛ばし、ヒットしたものを保存

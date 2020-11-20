@@ -24,20 +24,8 @@ public class MMDModel : MonoBehaviour
         //モデルに各種データをセット
         model.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/AC_motion");
         model.GetComponent<MMD4MecanimModel>().physicsEngine = MMD4MecanimModelImpl.PhysicsEngine.BulletPhysics;
-
-        /*
-        //表情リスト作成
-        MMD4MecanimAnimMorphHelper.Anim[] animations = new MMD4MecanimAnimMorphHelper.Anim[ExpressionName.Length];
-        for (int i = 0; i < animations.Length; i++)
-        {
-            animations[i] = new MMD4MecanimAnimMorphHelper.Anim();
-            animations[i].animName = ExpressionName[i];
-            animations[i].animFile = Resources.Load<TextAsset>("Music&Motion/" + ExpressionName[i] + ".anim");
-            animations[i].audioClip = Resources.Load<AudioClip>("Music&Motion/" + MusicName[i + 1]);
-        }
-        model.GetComponent<MMD4MecanimAnimMorphHelper>().animList = animations;
-        */
     }
+    
     //デストラクタ
     ~MMDModel()
     {
